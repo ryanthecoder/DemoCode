@@ -3,17 +3,17 @@ import ToolConnection
 import sys
 import serial
 class CraneConnection(ToolConnection):
-	def __init__(self, port, buffer = None, file = None):
-			self.port = port;
+	def __init__(self, port, file = None):
+		
+			self.buffer = []
 			
-			if buffer is not None:
-				self.buffer = buffer
 			self.port = port
-			self.buffer = serial.Serial('/dev/ttyUSB0', 115200, timeout=0.5)
+			self.serial = serial.Serial(self.port, 115200, timeout=0.5)
 			self.open = false
 			
 			if file is not None:
 				self.file = file
+				self.load(file)
 			
 			self.working = false
 			self.waiting = false
@@ -21,7 +21,10 @@ class CraneConnection(ToolConnection):
 			
 		def send(command):
 			if self.open:
-				self.buffer.write(command)
+				self.working = true
+				self.serial.write(command)
+				tinyGserial.readlines(None)
+				self.working = false
 				
 		def load(file):
 			if isinstance(file,str):
@@ -47,7 +50,7 @@ class CraneConnection(ToolConnection):
 							while ind < actionLength
 								action += self.data.pop(0)
 							
-							self.listeners.append(HeightListener(actionHeigth,action))
+							self.listeners.append(HeightListener(actionHeigth,action,self))
 						else
 							print('invaid input file)
 							system.exit(1)

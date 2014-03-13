@@ -4,8 +4,7 @@ class Connection:
 	    def __init__(self, port, buffer = None, file = None):
 			self.port = port;
 			
-			if buffer is not None:
-				self.buffer = buffer
+			self.buffer = []
 			
 			self.open = false
 			

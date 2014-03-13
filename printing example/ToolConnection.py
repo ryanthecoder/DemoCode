@@ -1,11 +1,10 @@
 # coding: utf-8
 import Connection
 class ToolConnection(Connection):
-	def __init__(self, port, buffer = None, file = None):
+	def __init__(self, port, file = None):
 			self.port = port;
-			
-			if buffer is not None:
-				self.buffer = buffer
+			self.serial = port
+			self.buffer = []
 				
 			self.port = port
 			
@@ -32,6 +31,9 @@ class ToolConnection(Connection):
 				self.file.close()
 			self.open = false
 		
+		def getListeners():
+			return self.listeners
+			
 		def getState():
 			result = []
 			result.append(self.open)

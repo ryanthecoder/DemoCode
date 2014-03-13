@@ -2,11 +2,10 @@
 import Connection
 class PrinterConnection(Connection):
 
-	    def __init__(self, port, buffer = None, file = None):
+	    def __init__(self, port,file = None):
 			self.port = port
-			
-			if buffer is not None:
-				self.buffer = buffer
+			self.serial = port
+			self.buffer =[]
 			
 			self.open = false;
 			
@@ -50,6 +49,8 @@ class PrinterConnection(Connection):
 		def addListener(listener):
 			self.listeners.append(listener)
 		
+		def getListeners():
+			return self.listeners
 		def getState()
 			result = []
 			result.append(self.open)

@@ -1,14 +1,15 @@
 # coding: utf-8
 import Listener
 class HeightListener(Listener):
-	def _init_(self,height,action):
+	def _init_(self,height,action,tool):
 		self.height = height
 		self.action = action
 	
-	def getEvent()
+	def getEvent():
 		return self.height
 	
-	def getAction() 
+	def getAction():
 		return self.action
 	
-	
+	def getTool():
+		return self.tool
