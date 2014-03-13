@@ -8,8 +8,8 @@ class CraneConnection(ToolConnection):
 			
 			if buffer is not None:
 				self.buffer = buffer
-			
-			self.port = serial.Serial('/dev/ttyUSB0', 115200, timeout=0.5)
+			self.port = port
+			self.buffer = serial.Serial('/dev/ttyUSB0', 115200, timeout=0.5)
 			self.open = false
 			
 			if file is not None:
@@ -21,11 +21,11 @@ class CraneConnection(ToolConnection):
 			
 		def send(command):
 			if self.open:
-				self.port.write(command)
+				self.buffer.write(command)
 				
 		def load(file):
 			if isinstance(file,str):
-				self.file = open(file, 'rb')
+				self.file = open(file, 'r')
 				self.data = []
 				for line in self.file:
 					self.data.append(line)
