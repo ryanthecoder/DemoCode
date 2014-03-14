@@ -2,20 +2,20 @@
 import Connection
 class ToolConnection(Connection):
 	def __init__(self, port, file = None):
-			self.port = port;
-			self.serial = port
-			self.buffer = []
-				
-			self.port = port
+		self.port = port;
+		self.serial = port
+		self.buffer = []
 			
-			self.open = false
-			
-			if file is not None:
-				self.file = file
-			
-			self.working = false
-			self.waiting = false
-			self.listeners = []
+		self.port = port
+		
+		self.open = false
+		
+		if file is not None:
+			self.file = file
+		
+		self.working = false
+		self.waiting = false
+		self.listeners = []
 	
 		def send(command):
 			if self.open:
